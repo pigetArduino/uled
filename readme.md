@@ -1,5 +1,7 @@
 Universal Led is an USB device to easily control 5 leds with a computer
 
+![Photo ULed](https://github.com/pigetArduino/universalLed/raw/master/doc/universalLed_photo.jpg)
+
 You can choose 6 color for each leds.
 All the controls are managed with applications which will be added in this repo.
 
@@ -13,9 +15,9 @@ to convert it into a Linux/MacOSx application
 * A prototype for network control of the led with files and Health bar HUD for Heroes of the storm : LINK  
 
 # Components
-* Arduino nano CH340G: 2€
-* 30 leds WS2812B : 4.50€ ( 5 leds :0.75€)
-* Total : 6.5€ (2.75€)
+* Arduino nano CH340G: 2â‚¬
+* 30 leds WS2812B : 4.50â‚¬ ( 5 leds :0.75â‚¬)
+* Total : 6.5â‚¬ (2.75â‚¬)
 
 # Wiring
 Warning : Do not connect more than 5 leds or the arduino won't be able to power them correctly   
@@ -23,6 +25,8 @@ I test it with 30 leds and now they are unable to correctly change the color.
 * D6 --> RESISTOR (470Ohm) DI
 * +5V --> 5V
 * GND --> GND
+
+![Wiring_uled](https://github.com/pigetArduino/universalLed/raw/master/doc/universalLed_wiring.png)
 
 # Commands available
 You can test the device in Arduino software   
