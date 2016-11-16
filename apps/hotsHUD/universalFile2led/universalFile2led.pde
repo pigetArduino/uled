@@ -1,8 +1,11 @@
 /*
 *    
- *   OpenLightHUD
- *   File to Light
+ *   Universal Led
+ *   Control Led by modifying text file
  */
+
+// This is a prototype, don't expect things to works out of the box
+// This will be replace by a python version (See UL)
 
 import java.awt.*;
 import processing.serial.*;
@@ -10,11 +13,12 @@ import processing.serial.*;
 //Debug mode
 boolean debug = false;
 
-//File
-String path = "Z:/ledManager";
+//File path
+//You need to create 1.txt/2.txt/3.txt/4.txt/5.txt manually
+String path = "Z:/leds";
 
 //USB configuration
-String usb_name = "OpenLightHUD";
+String usb_name = "ULed";
 int serial_wait_delay = 1000;
 
 //File

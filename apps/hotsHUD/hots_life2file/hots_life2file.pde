@@ -1,15 +1,28 @@
 /*
-*    Heroes of the Storm Life Status 
- *    Required: OpenLightHUD
- *   Only tested on 1920x1080, fake fullscreen
- */
+*    Heroes of the Storm Networked Life Status 
+*    Required: UniversalLed
+*   Only tested on 1920x1080, this won't work on fullscreen check your settings.
+*/
+
+// This application will tell you your life status and the life status
+// Of all the player running this application on your network.
+
+// After doing some tests, this isn't really effective since the game
+// required a lot of attention and you easily forget about the leds
+// So I will probably made a version with a buzzer/speaker instead
+
+// This is a prototype, don't expect things to works out of the box
+// This will be replace by a python version (See UL)
 
 import java.awt.*;
 import processing.serial.*;
 
-//File
+//Choose which led will be synchronised with your health status
 int id_led = 1;
-String path = "Z:/ledManager";
+
+//You need to create .txt file inside this folder
+//We use network share on Windows to give access to the led on the network
+String path = "Z:/leds";
 
 boolean debug = false; //Debug mode
 
@@ -46,7 +59,7 @@ void send(String message) {
 }
 
 void setup() {
-  println("OpenLightHUD -----------");
+  println("Univeral Led HUD -----------");
   println("File: " + filename);
   //GUI setup
   size(200, 300);

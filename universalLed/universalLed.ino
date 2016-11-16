@@ -1,11 +1,15 @@
 #include <FastLED.h>
-// Universal USB LED
-// -----------------
-// Components:
-// WS led (NEOPIXEL)
-// Arduino
-
 /*
+ Universal USB LED
+ https://github.com/pigetArduino/UniversalLed
+ -----------------
+ Components:
+ WS2812b led (NEOPIXEL clone)
+ Arduino Nano (clone)
+
+ Wiring
+ D6 (480Ohm resistor) ---> DI
+
    Color Table
    0 Off
    1 White
@@ -17,18 +21,19 @@
    7 Purple
 */
 
-//USB
-const String usb_name = "OpenLightHUD\n";
+//USB Device Type
+const String usb_name = "ULed\n";
 
-//Leds
-const int DATA_PIN = 6; //Neo Pixel RGB led
+//Leds Setup
+const int DATA_PIN = 6; //WS2812b led
 const int NUM_LEDS = 5;
 
 CRGB leds[NUM_LEDS];
 
-//Serial
+//Serial string buffer
 String readString;
 
+//You can change/add color here
 void changeLed(int pos, int color) {
   switch (color) {
     case 0:
@@ -59,7 +64,7 @@ void changeLed(int pos, int color) {
   FastLED.show();
 }
 
-
+//Blinks leds
 void BlinkLeds(int color) {
   for (int i = 0; i < NUM_LEDS; i++) {
     changeLed(i, color);
@@ -88,6 +93,8 @@ void loop() {
   while (Serial.available()) {
     delay(3); // Wait for data
 
+    //If data is received we convert it as a string for easier usage
+    //Of course this isn't optimize but this is easier to modify the code
     if (Serial.available() > 0) {
       char c = Serial.read();
       readString += c;
@@ -98,23 +105,30 @@ void loop() {
   if (readString.length() > 0) {
     //Serial.println(readString); //Show order sent
 
+    //If device type is sent turn off leds
     if (readString == usb_name) {
       Serial.print("OK");
       BlinkLeds(3);
     } else {
+      //You don't need to send device type to use the led
+      //It will use the 1 character of the led and the 3 character for the color
+      //Separator is ignore but I used :
       int led = readString.substring(0).toInt() - 1;
       int color = readString.substring(2).toInt();
+
       //Serial.println(led);
       //Serial.println(color);
+
+      //If led = -1 this means the order wasn't sent correctly
       if (led != -1) {
         changeLed(led, color);
         Serial.print("OK");
       }
     }
   }
+  //We clean the serial buffer
   readString = "";
 }
-
 
 
 
