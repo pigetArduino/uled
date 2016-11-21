@@ -32,7 +32,7 @@ I test it with 30 leds and now they are unable to correctly change the color.
 You can test the device in Arduino software   
 Baudrate : 115200 / No Line Ending   
 
-* UL --------> Check if device is correct
+* ULed --------> Check if device is correct
 * X:Y -------> (Where X is the led and Y the color)
 * 1:3 -------> (led 1 Green)
 * X  --------> (Where X is the led) Turn off led
