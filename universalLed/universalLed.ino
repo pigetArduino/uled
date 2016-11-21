@@ -22,7 +22,7 @@
 */
 
 //USB Device Type
-const String usb_name = "ULed\n";
+const String usb_name = "ULed";
 
 //Leds Setup
 const int DATA_PIN = 6; //WS2812b led
