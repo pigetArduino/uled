@@ -1,12 +1,13 @@
 ###########################
-#  Arduino Management     #
+#  Arduino Management v1.0#
 ###########################
 
 import serial
 from serial.tools import list_ports
 from threading import Thread
 import time
-
+import sys
+import random
 
 class Device:
 	# Change the status label if it is sent to the manager
@@ -31,12 +32,11 @@ class Device:
 			except:
 				print("Label wasn't ready when updated")
 		else:
-			print(string)
+			print("LABEL:" + string)
 
 	# Manage arduino connection in a thread
 	def manager(self):
-		self.arduino = self.search()
-		#print(arduino)
+		self.search()
 
 	# Write to Arduino
 	def write(self,string):
@@ -46,16 +46,18 @@ class Device:
 				time.sleep(0.020)
 			else:
 				print("Waiting for connection dismissed message...")
-		except:
+		except Exception as e:
 			#If message was not send correctly we try to reconnect
 			if self.isConnected:
 				self.isConnected = False
 				print("Error cannot write to arduino")
+				print(e)
 				search_thread = Thread(target = self.manager)
 				search_thread.daemon = True #If thread is not a daemon application could crashed
 				search_thread.start()
 
 	def close(self):
+		print("Arduino closed by user")
 		self.arduino.close()
 
 	# Detect Arduino Nano Clone and automatically reconnect
@@ -69,57 +71,58 @@ class Device:
 				print("Connected to " + str(device[0]))
 				self.change_status("Searching : " + device[0])
 
-				print(device[0])
 				print(device[1])
-				print(device[2])
+				#print(device[2])
 
-				self.arduino = self.get_type(device[0])
+				self.isConnected = self.get_type(device[0])
 
 				# If we found the correct arduino we return the serial connection
-				if self.arduino:
-					self.change_status("Connected")
+				if self.isConnected:
+					self.change_status("Connected: " + self.port)
 					print("Connected to " + self.type)
-					self.isConnected = True
 					break;
 			if not self.isConnected:
 				self.change_status("No device founded")
 		time.sleep(1)
-		self.search()	
+		if not self.isConnected:
+			self.search()
 
 
 	# Check if arduino is the droids humm the arduino you're looking for
 	def get_type(self,port):
 		try:
 			self.arduino = serial.Serial(port,self.baudrate,timeout=2)
-		except:
+		except Exception as e:
+			#If multiples application is looking to connect
+			#This won't work so we add a random sleep
 			print("Arduino wasn't opened correctly")
+			print(e)
+			time.sleep(random.randint(1,3))
 		#print(arduino)
 		
 		if self.arduino:
-			#(workaround for windows, this slow down detection a lot)
-			#But without this the connection will not be established
-			time.sleep(1)
-			
-			self.arduino.setDTR(False)
-			#We flush the arduino so it won't send multiples times OK
-			self.arduino.flush()
-			time.sleep(1)
+			time.sleep(2)
 		
 			#Write device type to arduino
 			try:
 				self.arduino.write(self.type.encode())
 				answer = self.arduino.read(2)
+				self.port = port
 				print("Serial: " + answer.decode())
 				if answer.decode() == self.return_string:
-					return self.arduino
+					return True
 				else:
 					#If the answer isn't correct close the serial connection.
 					self.arduino.close()
+					self.change_status("Incorrect return string")
+					print("Closing arduino")
 					return False
+			#Unable to write to arduino , skip
 			except:
-				print("Error writing to arduino")
+				self.change_status("No connection possible")
+				print("Error connecting to arduino")
 				return False
 
-			#We get the answer		
+		#Arduino connection not established skip	
 		else:
 			return False
