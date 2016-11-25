@@ -1,41 +1,59 @@
-Universal Led is an USB device to easily control 5 leds with a computer
+[Version française / French version](https://github.com/pigetArduino/utest/blob/master/README.fr.MD)
 
-![Photo ULed](https://github.com/pigetArduino/universalLed/raw/master/doc/universalLed_photo.jpg)
+![Photo ULed](https://github.com/pigetArduino/uled/raw/master/doc/universalLed_photo.jpg)   
+Universal Led is an USB device based on an Arduino nano (clone) to easily control 5 leds on Windows    
+Demo: https://www.youtube.com/watch?v=hgvi46x4oaE
 
-You can choose 6 color for each leds.
-All the controls are managed with applications which will be added in this repo.
 
-As for now the application is only compatible with Windows, but it shouldn't be hard   
-to convert it into a Linux/MacOSx application   
+![ULed App](https://github.com/pigetArduino/uled/raw/master/doc/ul_app.png)   
+You can choose 6 color for each leds. (White/Red/Green/Blue/Yellow/Orange/Purple)
 
-* Download Arduino nano clone drivers : http://nano.madnerd.org/
+# Usage
+* Install drivers for arduino nano (clone ch340g) : http://nano.madnerd.org
+* Download arduino/python code : http://uled.madnerd.org
+* Upload sketch **uled.ino**
+* Download application : http://uledapp.madnerd.org    
 
-# Applications available
-* Test your device : LINK
-* A prototype for network control of the led with files and Health bar HUD for Heroes of the storm : LINK  
+How to install drivers : https://www.youtube.com/watch?v=m3CsftsfiQU
 
 # Components
 * Arduino nano CH340G: 2€
 * 30 leds WS2812B : 4.50€ ( 5 leds :0.75€)
-* Total : 6.5€ (2.75€)
+* Resistor pack 400pcs (3€) (1 resistor: 0.0071€)
+* Total : 9.5€ (2.75€)
 
 # Wiring
-Warning : Do not connect more than 5 leds or the arduino won't be able to power them correctly   
-I test it with 30 leds and now they are unable to correctly change the color.   
+Wiring / How to make it: https://www.youtube.com/watch?v=hgvi46x4oaE
+
+Do not used more than 5 leds without a dedicated power supply or this can damage the leds   
+Each led can draw up to **60ma** at full brightness   
+An Arduino can provided up to **500ma** (on 5v/Gnd pin)   
+```5 leds = 5x60ma = 300ma ```  
+Source:
+https://learn.adafruit.com/adafruit-neopixel-uberguide/basic-connections
+
 * D6 --> RESISTOR (470Ohm) DI
 * +5V --> 5V
 * GND --> GND
 
-![Wiring_uled](https://github.com/pigetArduino/universalLed/raw/master/doc/universalLed_wiring.png)
+![Wiring_uled](https://github.com/pigetArduino/uled/raw/master/doc/universalLed_wiring.png)
+
+# 3D printing
+This model is an all purpose case for arduino nano projects    
+Models by Olivier Sarrailh : https://github.com/pigetArduino/uled/tree/master/3D    
+You will need to fill a hole for the led strip (see wiring instructions)
+
+# Create your own applications
+* Check out: http://github.com/pigetArduino/utest   
+* The source code is available in **apps/utest**
 
 # Commands available
-You can test the device in Arduino software   
+You can test the device in Arduino Serial Monitor   
 Baudrate : 115200 / No Line Ending   
 
-* ULed --------> Check if device is correct
+* ULed --------> Check if device is correct (turn off all led)
 * X:Y -------> (Where X is the led and Y the color)
 * 1:3 -------> (led 1 Green)
-* X  --------> (Where X is the led) Turn off led
 
 # Color
 * 0 : OFF
@@ -47,9 +65,10 @@ Baudrate : 115200 / No Line Ending
 * 6 : Orange
 * 7 : Purple
 
-Do not used more than 5 leds without a dedicated power supply or this can damage the leds   
-Each led can draw up to 60 milliamps at full brightness   
-An Arduino can provided up to 500ma
-5 leds = 5x60ma = 300ma
-Source:
-https://learn.adafruit.com/adafruit-neopixel-uberguide/basic-connections
+# Licences
+Icon by jpapun
+Creative Commons Attribution (by)   
+Link : http://findicons.com/icon/158595/device_and_hardware
+
+Software by Rémi Sarrailh (madnerd.org)   
+Licence: MIT
