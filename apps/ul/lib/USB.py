@@ -1,5 +1,5 @@
 ###########################
-#  Arduino Management v1.0#
+#  Arduino Management v1.1#
 ###########################
 
 import serial

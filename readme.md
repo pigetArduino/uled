@@ -48,5 +48,8 @@ Baudrate : 115200 / No Line Ending
 * 7 : Purple
 
 Do not used more than 5 leds without a dedicated power supply or this can damage the leds   
-(I tried it and now I have 15 leds that won't change to the correct color)    
-
+Each led can draw up to 60 milliamps at full brightness   
+An Arduino can provided up to 500ma
+5 leds = 5x60ma = 300ma
+Source:
+https://learn.adafruit.com/adafruit-neopixel-uberguide/basic-connections
