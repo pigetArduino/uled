@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Example application for Universal Led 
-# Doc : http://github.com/pigetArduino/UniversalLed
+# Doc : http://github.com/pigetArduino/uled
 # Author : Rémi Sarrailh (madnerd.org)
 # Licence : MIT
 
