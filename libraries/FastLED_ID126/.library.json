@@ -1,4 +1,5 @@
 {
+    "license": "MIT", 
     "name": "FastLED", 
     "repository": {
         "url": "https://github.com/FastLED/FastLED.git", 
@@ -16,7 +17,11 @@
     "frameworks": [
         "arduino"
     ], 
-    "version": "4c32e652ce", 
+    "version": "3.1.4", 
+    "examples": [
+        "examples/*/*.ino", 
+        "examples/*/*/*.ino"
+    ], 
     "authors": [
         {
             "maintainer": true, 
@@ -38,6 +43,7 @@
         "fast", 
         "math"
     ], 
+    "homepage": "http://fastled.io", 
     "id": 126, 
     "description": "FastLED is a library for programming addressable rgb led strips (APA102/Dotstar, WS2812/Neopixel, LPD8806, and a dozen others) acting both as a driver and as a library for color management and fast math."
 }
