@@ -5,7 +5,7 @@ Universal Led is an USB device based on an Arduino nano (clone) to easily contro
 Demo: https://www.youtube.com/watch?v=hgvi46x4oaE
 
 
-![ULed App](https://github.com/pigetArduino/uled/raw/master/doc/ul_app.png)   
+![ULed App](https://github.com/pigetArduino/uled/raw/master/doc/ul_app11.png)   
 You can choose 6 color for each leds. (White/Red/Green/Blue/Yellow/Orange/Purple)
 
 # Usage
