@@ -1,4 +1,7 @@
-[Version française / French version](https://github.com/pigetArduino/utest/blob/master/README.fr.MD)
+ULed
+-----
+
+[Version française / French version](https://github.com/pigetArduino/uled/blob/master/readme.fr.md)
 
 ![Photo ULed](https://github.com/pigetArduino/uled/raw/master/doc/universalLed_photo.jpg)   
 Universal Led is an USB device based on an Arduino nano (clone) to easily control 5 leds on Windows    
